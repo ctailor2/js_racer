@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Welcome to JAVASCRIPT RACER!</h1>
+
+
+
+  <div class="create_game_form">
+    <form action="/start_game" method="POST">
+      Player 1:
+      <select name="player1_id">
+        <% @players.each do |player| %>
+        <option value="<%= player.id %>"><%= player.name %></option>
+        <% end %>
+      </select>
+      <br>
+      <br>
+      Player 2:
+      <select name="player2_id">
+        <% @players.each do |player| %>
+        <option value="<%= player.id %>"><%= player.name %></option>
+        <% end %>
+      </select>
+      <br>
+      <br>
+      <input type="submit" value="Start Game">
+    </form>
+  </div>
+</div>
+
+
+var secondsSinceEpoch = (millisSinceEpoch / 1000) | 0;
+  var secondsInDay = ((secondsSinceEpoch % 86400) + 86400) % 86400;
