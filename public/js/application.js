@@ -82,7 +82,25 @@ $(document).ready(function() {
 
 });
 
+function Race () {
+  this.start_time = $.now();
+}
 
-// q is 81
+Race.prototype.render = function() {
 
-// p is 80
+}
+
+Race.prototype.start = function() {
+  alert("Starting a race!");
+}
+
+Race.prototype.finish = function() {
+
+}
+
+function Player () {
+  this.start_position = 1;
+}
+
+var race = new Race();
+race.start
