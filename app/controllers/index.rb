@@ -1,3 +1,4 @@
+require 'faker'
 
 # home page containing the 
 # "start_game" button
@@ -6,37 +7,58 @@ get '/' do
   erb :index
 end
 
-
-
 # Have a submit button that submits
 # user info to the server and directs
 # them to the page where they can 
 # start playing
-post '/start_game' do
-  new_race = Race.create()
+post '/race' do
+  race = Race.create(url: Faker::Lorem.characters(8), players: params[:player_ids])
+  
+  if race.valid?
+    redirect to("/race/#{race.url}")
+  else
+    @errors = race.errors
+    @players = Player.all
+    erb :index
+  end
 
-  player1_id = params[:player1_id]
-  player2_id = params[:player2_id]
-
-  new_race.games.create(player_id: player1_id)
-  new_race.games.create(player_id: player2_id)
-
-  redirect to("/play_game/#{new_race.id}")
 end
 
 # page where they actually play.
-get '/play_game/:race_id' do
-  @race = Race.find(params[:race_id])
-  @players = @race.players
+get '/race/:race_url' do
+  @race = Race.find_by_url(params[:race_url])
+  @players = []
+  @race.games.sort_by { |game| game.id }.each do | game |
+    @players << game.player
+  end
 
-  erb :play_game
+  if @race.duration.nil?
+    erb :race
+  else
+    @race.games.each do |game|
+      if game.winner == true
+        @winner = Player.find(game.player_id)
+      end
+    end
+    @duration = @race.duration
+    erb :_results
+  end
 end
 
 post '/record_results' do
   @duration = params[:duration]
-  @winner = params[:winner]
+  @winner = Player.find(params[:winner_id])
+  @race = Race.find(params[:race_id])
+  @winner_game = Game.find_by_player_id_and_race_id(@winner.id, @race.id)
 
-  erb :view_results, :layout => false
+  Game.update(@winner_game.id, :winner => true)
+  Race.update(@race.id, :duration => @duration)
+
+  if request.xhr?
+    erb :_results, :layout => false
+  else
+    erb :_results
+  end
 end 
 
 #have a href that directs the 

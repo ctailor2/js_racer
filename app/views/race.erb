@@ -1,0 +1,87 @@
+<div class="container">
+    <table class="racer_table" data-race-id="<%= @race.id %>">
+    <% player_number = 1 %>
+    <% @players.each do |player| %>
+      <tr id="player<%= player_number %>_strip" data-player-id="<%= player.id %>">
+        <td>Player<%= player_number %></td>
+        <td>---</td>
+        <td><%= player.name %></td>
+        <td class="active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td> 
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <% player_number += 1 %>
+    <% end %>
+    </table>
+</div>
+<div id="results">
+</div>
+
+
+<!--     <table class="racer_table">
+      <tr id="player1_strip" data-player-id="<%= @players.first.id %>">
+        <td class="active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td> 
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr id="player2_strip" data-player-id="<%= @players.last.id %>">
+        <td class="active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+</div>
+<div id="results">
+</div>
+ -->

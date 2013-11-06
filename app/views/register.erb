@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="center_contents">
+    <h1>Register New Player</h1>
+    <table class="centered_table" border="1">
+      <form action="/register" method="POST">
+        <tr><td><input type="text" name="initials" placeholder="Initials"></td></tr>
+        <tr><td><input type="text" name="name" placeholder="Name"></td></tr>
+        <tr><td><input type="submit" value="register"></td></tr>
+      </form>
+    </table>
+    
+    <% if @errors %>
+    <div>
+      <% @errors.each do | field, message | %>
+        <p style="color:red"><%= field %> <%= message %></p>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

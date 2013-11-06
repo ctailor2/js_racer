@@ -22,4 +22,13 @@ th {
 
 .racer_table  {
   border-style: solid;
+  margin: 15px 0 0 0;
+}
+
+.center_contents {
+  text-align: center;
+}
+
+.centered_table {
+  margin: auto;
 }
