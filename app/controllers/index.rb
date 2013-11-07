@@ -27,6 +27,7 @@ end
 # page where they actually play.
 get '/race/:race_url' do
   @race = Race.find_by_url(params[:race_url])
+
   @players = []
   @race.games.sort_by { |game| game.id }.each do | game |
     @players << game.player

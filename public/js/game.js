@@ -27,7 +27,7 @@ Race.prototype.keyListener = function(){
 }
 
 Race.prototype.updatePosition = function(player){
-  var currentBlock = $("#player" + player.id.toString() + "_strip .active")
+  var currentBlock = $("#player" + player.id + "_strip .active")
   var nextBlock = currentBlock.next();
   currentBlock.removeClass();
   nextBlock.addClass("active");
